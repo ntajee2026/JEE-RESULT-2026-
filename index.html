@@ -1,179 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>JEE Main Result 2026</title>
 
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
+    margin:0;
+    font-family: Arial;
+    background:#f2f2f2;
 }
 
-/* Header */
+/* HEADER */
 .header {
-    background: #0b2c4a;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    font-size: 16px;
+    background:white;
+    padding:10px 30px;
+    border-bottom:4px solid #0b3c6d;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-/* Container */
+.header img {
+    height:55px;
+}
+
+.header-text {
+    flex:1;
+    text-align:center;
+    font-size:14px;
+}
+
+/* LOGIN BOX */
 .container {
-    width: 400px;
-    margin: 60px auto;
-    background: white;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    display:flex;
+    justify-content:center;
+    margin-top:60px;
 }
 
-/* Title */
-.title {
-    background: #0b2c4a;
-    color: white;
-    padding: 10px;
-    font-weight: bold;
-    margin-bottom: 15px;
+.box {
+    width:350px;
+    background:white;
+    border:1px solid #ccc;
 }
 
-/* Labels */
-label {
-    font-size: 14px;
+.box-header {
+    background:#0b3c6d;
+    color:white;
+    padding:10px;
+    font-weight:bold;
 }
 
-/* Inputs */
-input {
-    width: 100%;
-    padding: 8px;
-    margin: 6px 0 12px;
-    border: 1px solid #ccc;
+.form {
+    padding:20px;
+}
+
+.form input {
+    width:100%;
+    padding:6px;
+    margin-top:8px;
 }
 
 /* CAPTCHA */
 .captcha-box {
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
+    margin-top:10px;
 }
 
 .captcha {
-    background: #1e3a8a;
-    color: white;
-    padding: 6px 12px;
-    font-weight: bold;
-    margin-right: 10px;
+    background:#1e2a78;
+    color:white;
+    padding:5px 10px;
+    font-weight:bold;
 }
 
-/* Buttons */
 .refresh {
-    padding: 6px 10px;
-    cursor: pointer;
+    margin-left:10px;
+    background:#007bff;
+    color:white;
+    border:none;
+    cursor:pointer;
 }
 
+/* BUTTON */
 .login-btn {
-    width: 100%;
-    padding: 10px;
-    background: green;
-    color: white;
-    border: none;
-    cursor: pointer;
+    margin-top:15px;
+    width:100%;
+    padding:8px;
+    background:green;
+    color:white;
+    border:none;
+    cursor:pointer;
 }
 
-.login-btn:hover {
-    background: darkgreen;
+/* RESULT BOX */
+.result-box {
+    display:none;
+    width:600px;
+    margin:40px auto;
+    background:white;
+    padding:20px;
+    border:1px solid #ccc;
 }
 
-/* Footer */
+table {
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+td {
+    border:1px solid #ccc;
+    padding:8px;
+}
+
+/* FOOTER */
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: #0b2c4a;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#0b3c6d;
+    color:white;
+    text-align:center;
+    padding:10px;
 }
 </style>
-
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
-JOINT ENTRANCE EXAMINATION (Main) – 2026 SESSION 2 (JANUARY 2026)<br>
-NTA SCORE: Paper 2 (B.E./B.Tech.)
+    <!-- Left Logo -->
+    <img src="moe.png">
+
+    <!-- Center Text -->
+    <div class="header-text">
+        <b>JOINT ENTRANCE EXAMINATION (Main) – 2026 SESSION 1</b><br>
+        (JANUARY 2026)<br>
+        NTA SCORE: Paper 2 (B.E./B.Tech.)
+    </div>
+
+    <!-- Right Logo -->
+    <img src="nta.png">
 </div>
 
-<div class="container">
+<!-- LOGIN -->
+<div class="container" id="loginBox">
+<div class="box">
+<div class="box-header">🔒 View Result</div>
 
-<div class="title">🔒 View Result</div>
-
-<label>Application Number :</label>
-<input type="text" id="app">
-
-<label>Password :</label>
-<input type="password" id="pass">
-
-<label>Enter CAPTCHA <span style="color:green">(case sensitive)</span> :</label>
-<input type="text" id="captchaInput">
+<div class="form">
+<input type="text" id="app" placeholder="Application Number">
+<input type="password" id="pass" placeholder="Password">
+<input type="text" id="userCaptcha" placeholder="Enter CAPTCHA">
 
 <div class="captcha-box">
-    <div class="captcha" id="captchaText"></div>
-    <button class="refresh" onclick="generateCaptcha()">↻</button>
+<div class="captcha" id="captcha"></div>
+<button class="refresh" onclick="generateCaptcha()">↻</button>
 </div>
-
-<br>
 
 <button class="login-btn" onclick="login()">LOGIN</button>
-
-<p id="error" style="color:red;"></p>
-
-<p style="text-align:right;">
-<a href="#">Forgot Password ?</a>
-</p>
-
 </div>
 
+</div>
+</div>
+
+<!-- RESULT -->
+<div class="result-box" id="resultBox">
+<h2>JEE Main 2026 Scorecard</h2>
+
+<table>
+<tr><td>Name</td><td>Tushar Nayare</td></tr>
+<tr><td>Application No</td><td>123456</td></tr>
+<tr><td>Physics</td><td>95</td></tr>
+<tr><td>Chemistry</td><td>92</td></tr>
+<tr><td>Mathematics</td><td>98</td></tr>
+<tr><td>Total Percentile</td><td>99.2</td></tr>
+</table>
+
+<button class="login-btn" onclick="window.print()">Download PDF</button>
+</div>
+
+<!-- FOOTER -->
 <div class="footer">
-This site is designed and hosted by NIC PEP Division. The contents are provided by NTA.
+This site is designed and hosted by NIC. Content provided by NTA.
 </div>
 
 <script>
-
 let currentCaptcha = "";
 
-// Generate CAPTCHA
 function generateCaptcha() {
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     currentCaptcha = "";
-    for (let i = 0; i < 6; i++) {
-        currentCaptcha += chars[Math.floor(Math.random() * chars.length)];
+    for(let i=0;i<6;i++){
+        currentCaptcha += chars[Math.floor(Math.random()*chars.length)];
     }
-    document.getElementById("captchaText").innerText = currentCaptcha;
+    document.getElementById("captcha").innerText = currentCaptcha;
 }
-
 generateCaptcha();
 
-// Login Function
 function login() {
     let app = document.getElementById("app").value;
     let pass = document.getElementById("pass").value;
-    let captcha = document.getElementById("captchaInput").value;
+    let cap = document.getElementById("userCaptcha").value;
 
-    if (captcha !== currentCaptcha) {
-        document.getElementById("error").innerText = "Invalid CAPTCHA";
+    if(cap !== currentCaptcha){
+        alert("Wrong CAPTCHA");
         return;
     }
 
-    if (app === "123456" && pass === "jee2026") {
-        window.location.href = "result.html";
+    if(app === "123456" && pass === "jee2026"){
+        document.getElementById("loginBox").style.display="none";
+        document.getElementById("resultBox").style.display="block";
     } else {
-        document.getElementById("error").innerText = "Invalid Application Number or Password";
+        alert("Invalid Details");
     }
 }
-
 </script>
 
 </body>
