@@ -168,18 +168,23 @@ td {
 
 <!-- RESULT -->
 <div class="result-box" id="resultBox">
+
 <h2>JEE Main 2026 Scorecard</h2>
 
-<table>
-<tr><td>Name</td><td>Tushar Nayare</td></tr>
-<tr><td>Application No</td><td>123456</td></tr>
-<tr><td>Physics</td><td>95</td></tr>
-<tr><td>Chemistry</td><td>92</td></tr>
-<tr><td>Mathematics</td><td>98</td></tr>
-<tr><td>Total Percentile</td><td>99.2</td></tr>
-</table>
+<!-- PDF SHOW -->
+<iframe src="result.pdf#toolbar=0" 
+        width="100%" 
+        height="600px"
+        style="border:none;">
+</iframe>
 
-<button class="login-btn" onclick="window.print()">Download PDF</button>
+<br><br>
+
+<!-- DOWNLOAD BUTTON -->
+<a href="result.pdf" download>
+    <button class="login-btn">Download PDF</button>
+</a>
+
 </div>
 
 <!-- FOOTER -->
