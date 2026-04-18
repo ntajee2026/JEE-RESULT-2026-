@@ -38,7 +38,7 @@ body {
 }
 
 .box {
-    width:350px;
+    width:420px;
     background:white;
     border:1px solid #ccc;
 }
@@ -50,68 +50,91 @@ body {
     font-weight:bold;
 }
 
+/* FORM */
 .form {
     padding:20px;
 }
 
-.form input {
+.row {
+    display:flex;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.label {
+    width:170px;
+    font-size:14px;
+    color:#333;
+}
+
+.input {
+    flex:1;
+}
+
+.input input {
     width:100%;
     padding:6px;
-    margin-top:8px;
+    border:1px solid #ccc;
+}
+
+.case {
+    color:green;
+    font-size:12px;
 }
 
 /* CAPTCHA */
-.captcha-box {
+.captcha-row {
     display:flex;
     align-items:center;
-    margin-top:10px;
 }
 
 .captcha {
     background:#1e2a78;
     color:white;
-    padding:5px 10px;
+    padding:6px 12px;
     font-weight:bold;
+    margin-right:10px;
+    letter-spacing:2px;
 }
 
 .refresh {
-    margin-left:10px;
     background:#007bff;
     color:white;
     border:none;
+    padding:6px 10px;
     cursor:pointer;
 }
 
 /* BUTTON */
-.login-btn {
+.btn-row {
     margin-top:15px;
-    width:100%;
-    padding:8px;
-    background:green;
+    display:flex;
+    align-items:center;
+}
+
+.login-btn {
+    background:#28a745;
     color:white;
     border:none;
+    padding:8px 20px;
     cursor:pointer;
+}
+
+.forgot {
+    margin-left:20px;
+    font-size:13px;
+    color:#003366;
+    text-decoration:underline;
 }
 
 /* RESULT BOX */
 .result-box {
     display:none;
-    width:600px;
+    width:700px;
     margin:40px auto;
     background:white;
     padding:20px;
     border:1px solid #ccc;
-}
-
-table {
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-}
-
-td {
-    border:1px solid #ccc;
-    padding:8px;
 }
 
 /* FOOTER */
@@ -131,17 +154,14 @@ td {
 
 <!-- HEADER -->
 <div class="header">
-    <!-- Left Logo -->
     <img src="moe.png">
 
-    <!-- Center Text -->
     <div class="header-text">
         <b>JOINT ENTRANCE EXAMINATION (Main) – 2026 SESSION 1</b><br>
         (JANUARY 2026)<br>
         NTA SCORE: Paper 2 (B.E./B.Tech.)
     </div>
 
-    <!-- Right Logo -->
     <img src="nta.png">
 </div>
 
@@ -151,18 +171,45 @@ td {
 <div class="box-header">🔒 View Result</div>
 
 <div class="form">
-<input type="text" id="app" placeholder="Application Number">
-<input type="password" id="pass" placeholder="Password">
-<input type="text" id="userCaptcha" placeholder="Enter CAPTCHA">
 
-<div class="captcha-box">
-<div class="captcha" id="captcha"></div>
-<button class="refresh" onclick="generateCaptcha()">↻</button>
+<div class="row">
+    <div class="label">Application Number :</div>
+    <div class="input">
+        <input type="text" id="app">
+    </div>
 </div>
 
-<button class="login-btn" onclick="login()">LOGIN</button>
+<div class="row">
+    <div class="label">Password :</div>
+    <div class="input">
+        <input type="password" id="pass">
+    </div>
 </div>
 
+<div class="row">
+    <div class="label">
+        Enter CAPTCHA <br>
+        <span class="case">(case sensitive)</span> :
+    </div>
+    <div class="input">
+        <input type="text" id="userCaptcha">
+    </div>
+</div>
+
+<div class="row">
+    <div class="label">CAPTCHA :</div>
+    <div class="input captcha-row">
+        <div class="captcha" id="captcha"></div>
+        <button class="refresh" onclick="generateCaptcha()">↻</button>
+    </div>
+</div>
+
+<div class="btn-row">
+    <button class="login-btn" onclick="login()">LOGIN</button>
+    <a href="#" class="forgot">Forgot Password ?</a>
+</div>
+
+</div>
 </div>
 </div>
 
@@ -171,16 +218,10 @@ td {
 
 <h2>JEE Main 2026 Scorecard</h2>
 
-<!-- PDF SHOW -->
-<iframe src="result.pdf#toolbar=0" 
-        width="100%" 
-        height="600px"
-        style="border:none;">
-</iframe>
+<iframe src="result.pdf#toolbar=0" width="100%" height="600px" style="border:none;"></iframe>
 
 <br><br>
 
-<!-- DOWNLOAD BUTTON -->
 <a href="result.pdf" download>
     <button class="login-btn">Download PDF</button>
 </a>
